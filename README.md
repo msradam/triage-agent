@@ -24,10 +24,16 @@ structural: there is no edge from `classify` straight to `resolve` or
 context gets a refusal. This is the step up from a toy: a real "investigate
 before you decide" policy, enforced by the graph rather than asked of the model.
 
-![triage-agent](demos/triage-agent.gif)
+An LLM drives it over MCP. Here fast-agent connects a Llama-3.3-70B model
+(on Together); when the model calls an action with the wrong inputs, the server
+returns a structured error and the model corrects itself:
 
-`triage-agent render` prints that graph in the terminal; `triage-agent sessions
-show` replays a recorded run.
+![triage-agent driven by an LLM](demos/triage-agent-agent.gif)
+
+The same workflow is observable from the terminal. `triage-agent render` prints
+the graph; `triage-agent sessions show` replays a recorded run:
+
+![triage-agent observability](demos/triage-agent.gif)
 
 ## Install
 
@@ -54,11 +60,15 @@ findings with `gather_context`, then resolves or escalates.
 
 ### fast-agent (terminal REPL)
 
+The repo ships a `fastagent.config.yaml` defining this server, so:
+
 ```bash
-uvx fast-agent-mcp go --model sonnet --servers triage-agent
+uvx fast-agent-mcp go --servers triage-agent -m "A customer was double-charged. Triage it."
 ```
 
-Use `--model generic.qwen2.5` to drive it with a local Ollama model.
+It uses Gemini by default (set `GOOGLE_API_KEY`). To drive it with a Together
+model instead, set `GENERIC_API_KEY` and add
+`--model generic.meta-llama/Llama-3.3-70B-Instruct-Turbo`.
 
 ### MCPJam (one npx command, browser playground, free models)
 
