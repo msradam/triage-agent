@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "triage-agent": {
+      "command": "uv",
+      "args": ["run", "triage-agent", "serve"]
+    }
+  }
+}
