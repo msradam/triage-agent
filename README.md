@@ -1,7 +1,7 @@
 # triage-agent
 
 A support-ticket triage agent built with
-[BurrMCP](https://github.com/msradam/burrmcp): a triage workflow defined as a
+[Theodosia](https://github.com/msradam/theodosia): a triage workflow defined as a
 [Burr](https://burr.dagworks.io/) state machine and served as an
 [MCP](https://modelcontextprotocol.io/) server. An LLM classifies the ticket,
 gathers context, and decides, one enforced transition at a time.
@@ -87,6 +87,6 @@ uv run triage-agent watch             # live-tail
 
 ## License
 
-Apache 2.0. Built on [BurrMCP](https://github.com/msradam/burrmcp),
+Apache 2.0. Built on [Theodosia](https://github.com/msradam/theodosia),
 [Apache Burr](https://github.com/apache/burr), and
 [FastMCP](https://github.com/jlowin/fastmcp).

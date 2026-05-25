@@ -17,7 +17,7 @@ from typing import Literal
 
 from burr.core import ApplicationBuilder, State, action
 from burr.core.action import Condition
-from burr.tracking.client import LocalTrackingClient
+from theodosia import tracker
 
 
 @action(reads=[], writes=["stage", "category", "priority", "notes"])
@@ -84,7 +84,7 @@ def build_application():
             ("gather_context", "resolve", investigating),
             ("gather_context", "escalate", investigating),
         )
-        .with_tracker(LocalTrackingClient(project="triage-agent"))
+        .with_tracker(tracker(project="triage-agent"))
         .with_state(stage="new")
         .with_entrypoint("classify")
         .build()

@@ -6,7 +6,7 @@ import asyncio
 
 from fastmcp import Client
 
-from burrmcp import ServingMode, mount
+from theodosia import ServingMode, mount
 from triage_agent.app import build_application
 
 
