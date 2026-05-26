@@ -85,6 +85,14 @@ uv run triage-agent sessions show     # per-step timeline; refused decisions in 
 uv run triage-agent watch             # live-tail
 ```
 
+Every step and refusal is also hash-chained into a tamper-evident `ledger.jsonl`
+next to the session's tracker log. Recompute the chain and confirm nothing was
+edited, reordered, or deleted after the fact with:
+
+```bash
+uv run triage-agent verify            # exits nonzero and names the broken line if the chain is altered
+```
+
 ## License
 
 Apache 2.0. Built on [Theodosia](https://github.com/msradam/theodosia),
